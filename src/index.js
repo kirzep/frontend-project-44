@@ -22,6 +22,9 @@ export const getGameRules = (gameName) => {
     case 'brain-progression':
       console.log('What number is missing in the progression?');
       break;
+    case 'brain-prime':
+      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+      break;
     default:
       break;
   }
@@ -114,4 +117,17 @@ export const generateHiddenNumber = (progression) => {
   progressionCopy[hiddenIndex] = '..';
 
   return [progressionCopy, correctAnswer];
+};
+
+// Функция для проверки числа на простоту
+export const isPrime = (num) => {
+  if (num <= 1) {
+    return 'no';
+  }
+  for (let i = 2; i <= Math.sqrt(num); i += 1) {
+    if (num % i === 0) {
+      return 'no';
+    }
+  }
+  return 'yes';
 };
