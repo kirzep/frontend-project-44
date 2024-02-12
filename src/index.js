@@ -19,6 +19,9 @@ export const getGameRules = (gameName) => {
     case 'brain-gcd':
       console.log('Find the greatest common divisor of given numbers.');
       break;
+    case 'brain-progression':
+      console.log('What number is missing in the progression?');
+      break;
     default:
       break;
   }
@@ -88,4 +91,27 @@ export const findGCD = (num1, num2) => {
   }
 
   return absoluteNum1;
+};
+
+// Функция для создания арифметической прогрессии
+export const generateProgression = (start, difference, length) => {
+  const progression = [];
+  let current = start;
+
+  for (let i = 0; i < length; i += 1) {
+    progression.push(current);
+    current += difference;
+  }
+
+  return progression;
+};
+
+// Функция для выбора случайного числа для замены и возвращения правильного ответа
+export const generateHiddenNumber = (progression) => {
+  const progressionCopy = [...progression];
+  const hiddenIndex = getRandomNumber(0, progressionCopy.length - 1);
+  const correctAnswer = progressionCopy[hiddenIndex];
+  progressionCopy[hiddenIndex] = '..';
+
+  return [progressionCopy, correctAnswer];
 };
