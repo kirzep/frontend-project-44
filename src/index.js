@@ -1,13 +1,16 @@
 import readlineSync from 'readline-sync';
 
-// Функция для генерации случайного числа (1 - 100)
-export const getRandomNumber = () => Math.floor(Math.random() * 100);
+// Функция для генерации случайного числа (1 - 20)
+export const getRandomNumber = () => Math.floor(Math.random() * 20);
 
 // Функция для вывода правил игры
 export const getGameRules = (gameName) => {
   switch (gameName) {
     case 'brain-even':
       console.log('Answer "yes" if the number is even, otherwise answer "no".');
+      break;
+    case 'brain-calc':
+      console.log('What is the result of the expression?');
       break;
     default:
       break;
@@ -26,7 +29,7 @@ export const isEven = (number) => {
 export const getUserAnswer = () => readlineSync.question('Your answer: ');
 
 // Функция для определения исхода игры
-export const GameResult = (result, name) => {
+export const getGameResult = (result, name) => {
   switch (result) {
     case 'GameOver':
       console.log(`Let's try again, ${name}!`);
@@ -37,4 +40,30 @@ export const GameResult = (result, name) => {
     default:
       break;
   }
+};
+
+// Функция для выбора случайного математического знака
+export const getRandomMathSign = () => {
+  const mathSigns = ['+', '-', '*'];
+  const randomIndex = Math.floor(Math.random() * mathSigns.length);
+  return mathSigns[randomIndex];
+};
+
+// Функция для получения результата математической операции со случайным знаком
+export const getCalcResult = (number1, number2, mathSign) => {
+  let result;
+  switch (mathSign) {
+    case '+':
+      result = number1 + number2;
+      break;
+    case '-':
+      result = number1 - number2;
+      break;
+    case '*':
+      result = number1 * number2;
+      break;
+    default:
+      break;
+  }
+  return result;
 };
