@@ -1,7 +1,11 @@
 import readlineSync from 'readline-sync';
 
 // Функция для генерации случайного числа (1 - 20)
-export const getRandomNumber = () => Math.floor(Math.random() * 20);
+export const getRandomNumber = (min = 1, max = 20) => {
+  const minCopy = Math.ceil(min);
+  const maxCopy = Math.floor(max);
+  return Math.floor(Math.random() * (maxCopy - minCopy)) + minCopy;
+};
 
 // Функция для вывода правил игры
 export const getGameRules = (gameName) => {
@@ -11,6 +15,9 @@ export const getGameRules = (gameName) => {
       break;
     case 'brain-calc':
       console.log('What is the result of the expression?');
+      break;
+    case 'brain-gcd':
+      console.log('Find the greatest common divisor of given numbers.');
       break;
     default:
       break;
@@ -66,4 +73,19 @@ export const getCalcResult = (number1, number2, mathSign) => {
       break;
   }
   return result;
+};
+
+// Функция для нахождения наибольшего общего делителя (НОД) двух чисел
+// Реализованная через алгоритм Евклида
+export const findGCD = (num1, num2) => {
+  let absoluteNum1 = Math.abs(num1);
+  let absoluteNum2 = Math.abs(num2);
+
+  while (absoluteNum2 !== 0) {
+    const temp = absoluteNum2;
+    absoluteNum2 = absoluteNum1 % absoluteNum2;
+    absoluteNum1 = temp;
+  }
+
+  return absoluteNum1;
 };
